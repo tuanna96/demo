@@ -18,23 +18,62 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h3>We suggest the following:</h3>
-    <ol class="round">
-        <li class="one">
-            <h5>Getting Started</h5>
-            ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            <a href="http://go.microsoft.com/fwlink/?LinkId=245146">Learn more…</a>
-        </li>
-        <li class="two">
-            <h5>Add NuGet packages and jump-start your coding</h5>
-            NuGet makes it easy to install and update free libraries and tools.
-            <a href="http://go.microsoft.com/fwlink/?LinkId=245147">Learn more…</a>
-        </li>
-        <li class="three">
-            <h5>Find Web Hosting</h5>
-            You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            <a href="http://go.microsoft.com/fwlink/?LinkId=245143">Learn more…</a>
-        </li>
-    </ol>
+    <asp:DetailsView ID="DetailsView1" runat="server" Height="50px" Width="125px" AutoGenerateRows="False" DataKeyNames="ma_khach_hang" DataSourceID="SqlDataSource1" AllowPaging="True">
+        <Fields>
+            <asp:BoundField DataField="ma_khach_hang" HeaderText="ma_khach_hang" ReadOnly="True" SortExpression="ma_khach_hang"></asp:BoundField>
+            <asp:BoundField DataField="ho_ten" HeaderText="ho_ten" SortExpression="ho_ten"></asp:BoundField>
+            <asp:BoundField DataField="email" HeaderText="email" SortExpression="email"></asp:BoundField>
+            <asp:BoundField DataField="sdt" HeaderText="sdt" SortExpression="sdt"></asp:BoundField>
+            <asp:BoundField DataField="dia_chi" HeaderText="dia_chi" SortExpression="dia_chi"></asp:BoundField>
+            <asp:BoundField DataField="ngay_sinh" HeaderText="ngay_sinh" SortExpression="ngay_sinh"></asp:BoundField>
+            <asp:CommandField ShowInsertButton="True" ShowEditButton="True" ShowDeleteButton="True"></asp:CommandField>
+        </Fields>
+    </asp:DetailsView>
+
+    <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:QuanLyBanHangConnectionString %>' DeleteCommand="DELETE FROM [khach_hang] WHERE [ma_khach_hang] = @ma_khach_hang" InsertCommand="INSERT INTO [khach_hang] ([ma_khach_hang], [ho_ten], [email], [sdt], [dia_chi], [ngay_sinh]) VALUES (@ma_khach_hang, @ho_ten, @email, @sdt, @dia_chi, @ngay_sinh)" SelectCommand="SELECT [ma_khach_hang], [ho_ten], [email], [sdt], [dia_chi], [ngay_sinh] FROM [khach_hang]" UpdateCommand="UPDATE [khach_hang] SET [ho_ten] = @ho_ten, [email] = @email, [sdt] = @sdt, [dia_chi] = @dia_chi, [ngay_sinh] = @ngay_sinh WHERE [ma_khach_hang] = @ma_khach_hang">
+        <DeleteParameters>
+            <asp:Parameter Name="ma_khach_hang" Type="Int32"></asp:Parameter>
+        </DeleteParameters>
+        <InsertParameters>
+            <asp:Parameter Name="ma_khach_hang" Type="Int32"></asp:Parameter>
+            <asp:Parameter Name="ho_ten" Type="String"></asp:Parameter>
+            <asp:Parameter Name="email" Type="String"></asp:Parameter>
+            <asp:Parameter Name="sdt" Type="String"></asp:Parameter>
+            <asp:Parameter Name="dia_chi" Type="String"></asp:Parameter>
+            <asp:Parameter DbType="Date" Name="ngay_sinh"></asp:Parameter>
+        </InsertParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="ho_ten" Type="String"></asp:Parameter>
+            <asp:Parameter Name="email" Type="String"></asp:Parameter>
+            <asp:Parameter Name="sdt" Type="String"></asp:Parameter>
+            <asp:Parameter Name="dia_chi" Type="String"></asp:Parameter>
+            <asp:Parameter DbType="Date" Name="ngay_sinh"></asp:Parameter>
+            <asp:Parameter Name="ma_khach_hang" Type="Int32"></asp:Parameter>
+        </UpdateParameters>
+    </asp:SqlDataSource>
+    <asp:DetailsView ID="DetailsView2" runat="server" Height="50px" Width="125px" AutoGenerateRows="False" DataKeyNames="stt" DataSourceID="SqlDataSource2" AllowPaging="True">
+        <Fields>
+            <asp:BoundField DataField="stt" HeaderText="stt" ReadOnly="True" InsertVisible="False" SortExpression="stt"></asp:BoundField>
+            <asp:BoundField DataField="ho_ten" HeaderText="ho_ten" SortExpression="ho_ten"></asp:BoundField>
+            <asp:BoundField DataField="email" HeaderText="email" SortExpression="email"></asp:BoundField>
+            <asp:BoundField DataField="noi_dung" HeaderText="noi_dung" SortExpression="noi_dung"></asp:BoundField>
+            <asp:CommandField ShowInsertButton="True" ShowEditButton="True" ShowDeleteButton="True"></asp:CommandField>
+        </Fields>
+    </asp:DetailsView>
+    <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:QuanLyBanHangConnectionString2 %>' DeleteCommand="DELETE FROM [lien_he] WHERE [stt] = @stt" InsertCommand="INSERT INTO [lien_he] ([ho_ten], [email], [noi_dung]) VALUES (@ho_ten, @email, @noi_dung)" SelectCommand="SELECT [stt], [ho_ten], [email], [noi_dung] FROM [lien_he]" UpdateCommand="UPDATE [lien_he] SET [ho_ten] = @ho_ten, [email] = @email, [noi_dung] = @noi_dung WHERE [stt] = @stt">
+        <DeleteParameters>
+            <asp:Parameter Name="stt" Type="Int32"></asp:Parameter>
+        </DeleteParameters>
+        <InsertParameters>
+            <asp:Parameter Name="ho_ten" Type="String"></asp:Parameter>
+            <asp:Parameter Name="email" Type="String"></asp:Parameter>
+            <asp:Parameter Name="noi_dung" Type="String"></asp:Parameter>
+        </InsertParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="ho_ten" Type="String"></asp:Parameter>
+            <asp:Parameter Name="email" Type="String"></asp:Parameter>
+            <asp:Parameter Name="noi_dung" Type="String"></asp:Parameter>
+            <asp:Parameter Name="stt" Type="Int32"></asp:Parameter>
+        </UpdateParameters>
+    </asp:SqlDataSource>
 </asp:Content>
