@@ -65,6 +65,7 @@
             <asp:Parameter Name="stt" Type="Int32"></asp:Parameter>
         </DeleteParameters>
 
+
         <InsertParameters>
             <asp:Parameter Name="ho_ten" Type="String"></asp:Parameter>
             <asp:Parameter Name="email" Type="String"></asp:Parameter>
